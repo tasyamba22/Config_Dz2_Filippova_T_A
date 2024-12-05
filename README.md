@@ -79,7 +79,7 @@ python configgraf.py
 **Граф зависимостей:** <br/>
 ![dependencies_mongoose](https://github.com/user-attachments/assets/0949c6db-457f-4c32-a08f-56505f6d85c2)
 **Вывод кода графа в терминал:** <br/>
-![image](https://github.com/user-attachments/assets/65dcd8ba-f6ad-4327-9bd2-b53d733a9386)
+![image](https://github.com/user-attachments/assets/ed9608ff-0b8f-4fb7-a0ca-0549a4b78c6d)
 ## 5. Результаты тестов <br/>
 Выполнение тестирования:<br/>
 C:\Users\Taisi\PycharmProjects\Config_Dz2\.venv\Scripts\python.exe "D:/PyCharm Community Edition 2024.3/plugins/python-ce/helpers/pycharm/_jb_unittest_runner.py" --path C:\Users\Taisi\PycharmProjects\Config_Dz2\test.py 
