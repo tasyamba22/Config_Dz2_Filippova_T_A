@@ -70,11 +70,16 @@ python configgraf.py
  python configgraf.py --graphviz-path "C:\Program Files\Graphviz\bin\dot.exe" --package-name "mongoose" --output-path "C:\Users\Taisi\PycharmProjects\Config_Dz2\dependencies_mongoose.dot" --repo-url "https://registry.npmjs.com"
 ```
 ### Сгенерировать граф<br/>
-После запуска проекта результат будет сохранен в файл dependencies_mongoose.dot. 
+После запуска проекта результат будет сохранен в файл dependencies_mongoose.dot. <br/>
 Чтобы преобразовать его в изображение, выполните: <br/>
 ```dot -Tpng dependencies_mongoose.dot -o dependencies_mongoose.png```<br/>
 ## 4. Примеры использования 
-
+**Код зависимостей:** <br/>
+![image](https://github.com/user-attachments/assets/999367ec-0fea-4713-9d38-1a7ccd5f3e54)
+**Граф зависимостей:** <br/>
+![dependencies_mongoose](https://github.com/user-attachments/assets/0949c6db-457f-4c32-a08f-56505f6d85c2)
+**Вывод кода графа в терминал:** <br/>
+![image](https://github.com/user-attachments/assets/65dcd8ba-f6ad-4327-9bd2-b53d733a9386)
 ## 5. Результаты тестов <br/>
 ![image](https://github.com/user-attachments/assets/0769bfbd-46a2-4f93-8d17-3332fbacdb22)
 
