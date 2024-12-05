@@ -59,7 +59,22 @@ python configgraf.py
 5.  `parse_arguments()`<br/>
 Обрабатывает аргументы командной строки.<br/>
 *Возвращает:* Объект с аргументами.<br/>
+## 3. Описание команд для сборки проекта.<br/>
+Для работы проекта требуется Python и установленный Graphviz.<br/>
+### Установка зависимостей:<br/>
+1. Установите Python версии 3.7+<br/>
+2. Установите Graphviz с официального сайта.<br/>
+### Запуск программы:<br/>
+Пример вызова программы через командную строку:<br/>
+```
+ python configgraf.py --graphviz-path "C:\Program Files\Graphviz\bin\dot.exe" --package-name "mongoose" --output-path "C:\Users\Taisi\PycharmProjects\Config_Dz2\dependencies_mongoose.dot" --repo-url "https://registry.npmjs.com"
+```
+### Сгенерировать граф<br/>
+После запуска проекта результат будет сохранен в файл dependencies_mongoose.dot. 
+Чтобы преобразовать его в изображение, выполните: <br/>
+```dot -Tpng dependencies_mongoose.dot -o dependencies_mongoose.png```<br/>
+## 4. Примеры использования 
 
-## Результаты тестов <br/>
+## 5. Результаты тестов <br/>
 ![image](https://github.com/user-attachments/assets/0769bfbd-46a2-4f93-8d17-3332fbacdb22)
 
