@@ -81,5 +81,15 @@ python configgraf.py
 **Вывод кода графа в терминал:** <br/>
 ![image](https://github.com/user-attachments/assets/65dcd8ba-f6ad-4327-9bd2-b53d733a9386)
 ## 5. Результаты тестов <br/>
-![image](https://github.com/user-attachments/assets/0769bfbd-46a2-4f93-8d17-3332fbacdb22)
+Выполнение тестирования:<br/>
+C:\Users\Taisi\PycharmProjects\Config_Dz2\.venv\Scripts\python.exe "D:/PyCharm Community Edition 2024.3/plugins/python-ce/helpers/pycharm/_jb_unittest_runner.py" --path C:\Users\Taisi\PycharmProjects\Config_Dz2\test.py 
+Testing started at 23:05 ...
+Launching unittests with arguments python -m unittest C:\Users\Taisi\PycharmProjects\Config_Dz2\test.py in C:\Users\Taisi\PycharmProjects\Config_Dz2
+Результат сохранен в файл: test_output.dot
 
+Ran 4 tests in 0.004s
+
+OK
+
+Process finished with exit code 0
+![image](https://github.com/user-attachments/assets/0769bfbd-46a2-4f93-8d17-3332fbacdb22)
