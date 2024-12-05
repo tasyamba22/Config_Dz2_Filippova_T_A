@@ -1,0 +1,22 @@
+digraph Dependencies {
+    "mongoose" -> "ms";
+    "mongoose" -> "bson";
+    "mongoose" -> "sift";
+    "mongoose" -> "mpath";
+    "mongoose" -> "kareem";
+    "mongoose" -> "mquery";
+    "mongoose" -> "mongodb";
+    "mquery" -> "debug";
+    "debug" -> "ms";
+    "mongodb" -> "bson";
+    "mongodb" -> "@mongodb-js/saslprep";
+    "mongodb" -> "mongodb-connection-string-url";
+    "@mongodb-js/saslprep" -> "sparse-bitfield";
+    "sparse-bitfield" -> "memory-pager";
+    "mongodb-connection-string-url" -> "whatwg-url";
+    "mongodb-connection-string-url" -> "@types/whatwg-url";
+    "whatwg-url" -> "tr46";
+    "whatwg-url" -> "webidl-conversions";
+    "tr46" -> "punycode";
+    "@types/whatwg-url" -> "@types/webidl-conversions";
+}
