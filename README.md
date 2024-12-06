@@ -80,6 +80,13 @@ python configgraf.py
 ![dependencies_mongoose](https://github.com/user-attachments/assets/0949c6db-457f-4c32-a08f-56505f6d85c2)
 **Вывод кода графа в терминал:** <br/>
 ![image](https://github.com/user-attachments/assets/ed9608ff-0b8f-4fb7-a0ca-0549a4b78c6d)
+**Граф зависимостей с условием: если обновление последнее было меньше, чем 2 месяца назад 
+покрасить в зеленый** <br/>
+![dependencies_mongoose](https://github.com/user-attachments/assets/b9f0189a-2037-400e-9cbc-c4511fd7135c)
+**Код зависимостей с условием: если обновление последнее было меньше, чем 2 месяца назад 
+покрасить в зеленый** <br/>
+![image](https://github.com/user-attachments/assets/b67c4adc-b2db-4edc-9956-2437eaba37ec)
+
 ## 5. Результаты тестов <br/>
 Выполнение тестирования:<br/>
 C:\Users\Taisi\PycharmProjects\Config_Dz2\.venv\Scripts\python.exe "D:/PyCharm Community Edition 2024.3/plugins/python-ce/helpers/pycharm/_jb_unittest_runner.py" --path C:\Users\Taisi\PycharmProjects\Config_Dz2\test.py 
