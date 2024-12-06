@@ -1,6 +1,7 @@
 import argparse
 import urllib.request
 import json
+from datetime import datetime, timedelta
 
 def fetch_package_dependencies(pkg_name, api_url):
     # Получение списка зависимостей для указанного пакета через предоставленный API.
@@ -13,7 +14,7 @@ def fetch_package_dependencies(pkg_name, api_url):
 
         latest_version = package_data['dist-tags']['latest']
         dependencies = package_data['versions'][latest_version].get('dependencies', {})
-        return dependencies
+        return dependencies, latest_version, package_data['time'][latest_version]
 
     except urllib.error.URLError as err:
         raise RuntimeError(f"Сетевая ошибка или неправильный URL: {err}")
@@ -24,9 +25,51 @@ def fetch_package_dependencies(pkg_name, api_url):
 def generate_graphviz_content(dependency_map):
     # Создает текстовое представление графа зависимостей в формате Graphviz.
     graph_lines = ["digraph Dependencies {"]
-    for parent, children in dependency_map.items():
+    processed_nodes = set()  # Хранение уже обработанных узлов
+
+    for parent, data in dependency_map.items():
+        version = data["version"]
+        last_updated = data["last_updated"]
+        children = data["dependencies"]
+
+        # Определяем цвет узла на основе даты обновления
+        last_update_date = datetime.strptime(last_updated, "%Y-%m-%dT%H:%M:%S.%fZ")
+        color = "green" if last_update_date >= datetime.utcnow() - timedelta(days=60) else None
+
+        if parent not in processed_nodes:
+            if color:
+                graph_lines.append(
+                    f'    "{parent}" [label="{parent} ({version})", color={color}, style="filled,solid"];'
+                )
+            else:
+                graph_lines.append(
+                    f'    "{parent}" [label="{parent} ({version})", style="solid"];'
+                )
+            processed_nodes.add(parent)
+
         for child in children:
+            child_data = dependency_map.get(child, {})
+            child_version = child_data.get("version", "unknown")
+
+            if "last_updated" in child_data:
+                child_last_updated = datetime.strptime(child_data["last_updated"], "%Y-%m-%dT%H:%M:%S.%fZ")
+                child_color = "green" if child_last_updated >= datetime.utcnow() - timedelta(days=60) else None
+            else:
+                child_color = None
+
+            if child not in processed_nodes:
+                if child_color:
+                    graph_lines.append(
+                        f'    "{child}" [label="{child} ({child_version})", color={child_color}, style="filled,solid"];'
+                    )
+                else:  # Узлы без заливки (только граница)
+                    graph_lines.append(
+                        f'    "{child}" [label="{child} ({child_version})", style="solid"];'
+                    )
+                processed_nodes.add(child)
+
             graph_lines.append(f'    "{parent}" -> "{child}";')
+
     graph_lines.append("}")
     return "\n".join(graph_lines)
 
@@ -36,16 +79,19 @@ def build_dependency_graph(pkg_name, api_url, graph=None, processed=None):
     if graph is None:
         graph = {}
     if processed is None:
-        processed = set()
+        processed = {}
 
     if pkg_name in processed:
         return graph
 
-    processed.add(pkg_name)
-
     try:
-        dependencies = fetch_package_dependencies(pkg_name, api_url)
-        graph[pkg_name] = list(dependencies.keys())
+        dependencies, latest_version, last_updated = fetch_package_dependencies(pkg_name, api_url)
+        processed[pkg_name] = (latest_version, last_updated)  # Сохраняем версию и дату обновления
+        graph[pkg_name] = {
+            "dependencies": list(dependencies.keys()),
+            "version": latest_version,
+            "last_updated": last_updated,
+        }
 
         for dependency in dependencies:
             build_dependency_graph(dependency, api_url, graph, processed)
